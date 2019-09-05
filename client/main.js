@@ -1,10 +1,6 @@
 import Vue from "vue";
-import HelloWorld from "../components/HelloWorld.vue";
+import App from "../components/App.vue";
 
 new Vue({
-  el: "#helloworld",
-  render: h => h(HelloWorld),
-  data: {
-    message: "ntm"
-  }
-});
+  render: h => h(App)
+}).$mount("#app");
