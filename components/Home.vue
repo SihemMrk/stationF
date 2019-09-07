@@ -1,9 +1,6 @@
 <template> 
-<div id='container'>
-    <div id='up'>
-        <img src="assets/stationF.png"/>
-        <h1>Station F</h1>
-    </div>
+<div>
+  
     <div class='login'>
         <div class='username'>
             <input type="text" id="name" placeholder="Identifiant" required
@@ -14,20 +11,29 @@
             <input type="password" placeholder="Mot de passe"  />
         </div>
         <div class='connect'>
-            <button>Se connecter</button>
+            <button v-on:click="cliquer">Se connecter</button>
         </div>
     </div>
     <div class='forget'>
-        <button>Mot de passe oublié </button>
+        <a href='#/forgotten-password'>Mot de passe oublié </a>
     </div>
+ 
 </div>
 </template>
 
 <script>
 
-export default {
-  name: 'HomePage'
+import router from '../router'
+
+
+ export default {
+  name: "Home"
+,
+methods : {
+    cliquer : function() {
+        router.push({ name : 'ReservationPage'});
+        }
+    }
 }
+
 </script>
-
-

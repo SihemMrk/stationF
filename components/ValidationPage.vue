@@ -1,5 +1,5 @@
 <template>
-    <div id='container'>
+    <div >
     <div>
         <h3>Votre réservation a été valider</h3>
     </div>

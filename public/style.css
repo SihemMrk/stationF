@@ -2,7 +2,7 @@
   margin: 0 auto;
   width: 400px;
   height: 500px;
-  background-color: azure;
+  background-color: #eaeaea;
 }
 
 #up {
@@ -14,38 +14,4 @@
 img {
   width: 100px;
   height: 100px;
-}
-
-.login {
-  text-align: center;
-  margin-top: 70px;
-}
-input {
-  border-radius: 4px;
-  width: 40%;
-}
-
-.username p {
-  margin-top: 0;
-  color: rgb(209, 203, 203);
-}
-
-.password,
-.connect {
-  margin-top: 30px;
-}
-
-.forget {
-  margin-top: 70px;
-  text-align: right;
-}
-
-.reservationInfo div {
-  display: flex;
-  justify-content: space-around;
-}
-
-.reservationInfo input {
-  width: 50%;
-  height: 20%;
 }

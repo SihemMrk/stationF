@@ -1,18 +1,18 @@
 <template>
-    <div id='app'>   
-    <ValidationPage/>  
+<div id='container'>
+  <div id='up'>
+        <img src="assets/stationF.png"/>
+        <h1>Station F</h1>
     </div>
+    <div id='app'> 
+    <router-view></router-view>
+ </div>
+</div>
 </template>
 <script>
-import HomePage from './HomePage.vue'
-import ReservationPage from './ReservationPage.vue'
-import ValidationPage from './ValidationPage.vue'
 export default {
-    name : 'app',
-    components : {
-        HomePage,
-        ReservationPage,
-        ValidationPage
-    }
+    name : 'app'
 }
 </script>
+
+
