@@ -2324,6 +2324,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Home",
@@ -2391,12 +2397,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 const axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -2420,9 +2420,14 @@ const axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         name: 'ReservationPage'
       });
     },
-    reserve: function (name) {
-      console.log(name); //const response = await axios.post('/reserve', this.$props)
-      //console.log(this.$props)
+    reserve: async function (name) {
+      console.log(name);
+      var name = {
+        name: name
+      };
+      const newProps = Object.assign(this.$props, name);
+      console.log(newProps);
+      const response = await axios.post('/reserve', newProps);
     }
   }
 });
@@ -2473,6 +2478,16 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../router */ "./router/index.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3159,17 +3174,29 @@ var render = function() {
     _c("div", { staticClass: "login" }, [
       _vm._m(0),
       _vm._v(" "),
-      _vm._m(1),
-      _vm._v(" "),
-      _c("div", { staticClass: "connect" }, [
-        _c("button", { on: { click: _vm.cliquer } }, [_vm._v("Se connecter")])
+      _c("div", { staticClass: "myinfo" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _vm._m(2),
+        _vm._v(" "),
+        _c("div", { staticClass: "connect" }, [
+          _c("button", { on: { click: _vm.cliquer } }, [_vm._v("Se connecter")])
+        ]),
+        _vm._v(" "),
+        _vm._m(3)
       ])
-    ]),
-    _vm._v(" "),
-    _vm._m(2)
+    ])
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "myspace" }, [
+      _c("h2", [_vm._v("Mon espace")])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -3229,8 +3256,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", [
+  return _c("div", { attrs: { id: "reservation" } }, [
+    _c("div", { staticClass: "reservationInfoList" }, [
       _c("div", [
         _c("label", { attrs: { for: "date" } }, [_vm._v("Le")]),
         _vm._v(" "),
@@ -3321,7 +3348,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", [
-        _c("label", { attrs: { for: "pers" } }, [_vm._v("Nb de pers.")]),
+        _c("label", { attrs: { for: "pers" } }, [_vm._v("Pour")]),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -3349,104 +3376,21 @@ var render = function() {
               _vm.$set(this.$props, "pers", $event.target.value)
             }
           }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _c("label", [_vm._v("Equipements")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: this.$props.equip1,
-              expression: "this.$props.equip1"
-            }
-          ],
-          attrs: { id: "retro", name: "retro", type: "checkbox" },
-          domProps: {
-            checked: Array.isArray(this.$props.equip1)
-              ? _vm._i(this.$props.equip1, null) > -1
-              : this.$props.equip1
-          },
-          on: {
-            change: function($event) {
-              var $$a = this.$props.equip1,
-                $$el = $event.target,
-                $$c = $$el.checked ? true : false
-              if (Array.isArray($$a)) {
-                var $$v = null,
-                  $$i = _vm._i($$a, $$v)
-                if ($$el.checked) {
-                  $$i < 0 && _vm.$set(this.$props, "equip1", $$a.concat([$$v]))
-                } else {
-                  $$i > -1 &&
-                    _vm.$set(
-                      this.$props,
-                      "equip1",
-                      $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                    )
-                }
-              } else {
-                _vm.$set(this.$props, "equip1", $$c)
-              }
-            }
-          }
         }),
-        _c("label", { attrs: { for: "retro" } }, [_vm._v("Retro projecteur")]),
         _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: this.$props.equip2,
-              expression: "this.$props.equip2"
-            }
-          ],
-          attrs: { id: "tv", name: "tv", type: "checkbox" },
-          domProps: {
-            checked: Array.isArray(this.$props.equip2)
-              ? _vm._i(this.$props.equip2, null) > -1
-              : this.$props.equip2
-          },
-          on: {
-            change: function($event) {
-              var $$a = this.$props.equip2,
-                $$el = $event.target,
-                $$c = $$el.checked ? true : false
-              if (Array.isArray($$a)) {
-                var $$v = null,
-                  $$i = _vm._i($$a, $$v)
-                if ($$el.checked) {
-                  $$i < 0 && _vm.$set(this.$props, "equip2", $$a.concat([$$v]))
-                } else {
-                  $$i > -1 &&
-                    _vm.$set(
-                      this.$props,
-                      "equip2",
-                      $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                    )
-                }
-              } else {
-                _vm.$set(this.$props, "equip2", $$c)
-              }
-            }
-          }
-        }),
-        _c("label", { attrs: { for: "tv" } }, [_vm._v("Télévision")])
+        _c("label", { attrs: { for: "pers" } }, [_vm._v("pers.")])
       ])
     ]),
     _vm._v(" "),
     _c("div", [
       _c(
         "table",
+        { attrs: { id: "table" } },
         [
           _vm._m(0),
           _vm._v(" "),
           _vm._l(_vm.rooms, function(room) {
-            return _c("tr", [
+            return _c("tr", { staticClass: "otherTr" }, [
               _c("td", [_vm._v(_vm._s(room.name))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(room.capacity))]),
@@ -3463,13 +3407,14 @@ var render = function() {
                 _c(
                   "button",
                   {
+                    staticClass: "reserveButton",
                     on: {
                       click: function($event) {
                         return _vm.reserve(room.name)
                       }
                     }
                   },
-                  [_vm._v("Reserver")]
+                  [_vm._v("RESERVER")]
                 )
               ])
             ])
@@ -3485,7 +3430,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("tr", [
+    return _c("tr", { staticClass: "firstTr" }, [
       _c("td", [_vm._v("Nom de la salle")]),
       _vm._v(" "),
       _c("td", [_vm._v("Capacité")]),
@@ -3552,7 +3497,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { attrs: { id: "reservation" } }, [
     _vm._m(0),
     _vm._v(" "),
     _c("form", [
@@ -3565,11 +3510,9 @@ var render = function() {
         _vm._v(" "),
         _vm._m(4),
         _vm._v(" "),
-        _vm._m(5),
-        _vm._v(" "),
-        _c("div", [
+        _c("div", { staticClass: "reserver" }, [
           _c("button", { on: { click: _vm.rechercher } }, [
-            _vm._v("Rechercher")
+            _vm._v("Trouver une salle")
           ])
         ])
       ])
@@ -3590,25 +3533,8 @@ var staticRenderFns = [
     return _c("div", [
       _c("label", { attrs: { for: "date" } }, [_vm._v("Le")]),
       _vm._v(" "),
-      _c("input", { attrs: { id: "date", name: "date", type: "date" } })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("label", { attrs: { for: "from" } }, [_vm._v("De")]),
-      _vm._v(" "),
       _c("input", {
-        attrs: {
-          id: "from",
-          name: "from",
-          type: "time",
-          min: "09:00",
-          max: "19:00",
-          required: ""
-        }
+        attrs: { id: "date", name: "date", type: "date", placeholder: "date" }
       })
     ])
   },
@@ -3616,19 +3542,36 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("label", { attrs: { for: "to" } }, [_vm._v("A")]),
+    return _c("div", { staticClass: "hours" }, [
+      _c("div", [
+        _c("label", { attrs: { for: "from" } }, [_vm._v("De")]),
+        _vm._v(" "),
+        _c("input", {
+          attrs: {
+            id: "from",
+            name: "from",
+            type: "time",
+            min: "09:00",
+            max: "19:00",
+            required: ""
+          }
+        })
+      ]),
       _vm._v(" "),
-      _c("input", {
-        attrs: {
-          id: "to",
-          name: "to",
-          type: "time",
-          min: "09:00",
-          max: "19:00",
-          required: ""
-        }
-      })
+      _c("div", { staticClass: "to" }, [
+        _c("label", { attrs: { for: "to" } }, [_vm._v("A")]),
+        _vm._v(" "),
+        _c("input", {
+          attrs: {
+            id: "to",
+            name: "to",
+            type: "time",
+            min: "09:00",
+            max: "19:00",
+            required: ""
+          }
+        })
+      ])
     ])
   },
   function() {
@@ -3655,17 +3598,39 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("label", [_vm._v("Equipements")]),
-      _vm._v(" "),
-      _c("input", {
-        attrs: { id: "retro", name: "retro", type: "checkbox", value: "Retro" }
-      }),
-      _c("label", { attrs: { for: "retro" } }, [_vm._v("Retro projecteur")]),
-      _vm._v(" "),
-      _c("input", {
-        attrs: { id: "tv", name: "tv", type: "checkbox", value: "Télévision" }
-      }),
-      _c("label", { attrs: { for: "tv" } }, [_vm._v("Télévision")])
+      _c("div", { staticClass: "checkbox" }, [
+        _c("div", { staticClass: "equip" }, [
+          _c("label", [_vm._v("Equipements")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "choices" }, [
+          _c("div", [
+            _c("input", {
+              attrs: {
+                id: "retro",
+                name: "retro",
+                type: "checkbox",
+                value: "Retro"
+              }
+            }),
+            _c("label", { attrs: { for: "retro" } }, [
+              _vm._v("Retro projecteur")
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c("input", {
+              attrs: {
+                id: "tv",
+                name: "tv",
+                type: "checkbox",
+                value: "Télévision"
+              }
+            }),
+            _c("label", { attrs: { for: "tv" } }, [_vm._v("Télévision")])
+          ])
+        ])
+      ])
     ])
   }
 ]
