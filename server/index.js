@@ -17,7 +17,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../public")));
 
 app.post("/searchrooms", async (req, res, next) => {
-  console.log(req.body);
   var askedDate = new Date();
 
   askedDate.setTime(Date.parse(req.body.date));
@@ -53,11 +52,57 @@ app.post("/searchrooms", async (req, res, next) => {
     return;
   }
   const seed = path.join(__dirname, "./seed.json");
-  const doc = JSON.parse(fs.readFileSync(seed, "utf8"));
+  const roomsList = JSON.parse(fs.readFileSync(seed, "utf8"));
 
-  console.log(doc.rooms.length);
+  const reservationSeed = path.join(__dirname, "./reservation.json");
+  const reservationsList = JSON.parse(fs.readFileSync(reservationSeed, "utf8"));
 
-  res.send(JSON.stringify(doc.rooms));
+  var potentielRooms = [];
+
+  roomsList.rooms.filter(room => {
+    // if (
+    //   req.body.pers <= room.capacity &&
+    //   (req.body.equip1 === false &&
+    //     req.body.equip2 === true &&
+    //     room.equipements.map(equip => equip.name === "Retro Projecteur"))
+    // ) {
+    //   potentielRooms.push(room);
+    // }
+
+    if (
+      req.body.pers <= room.capacity &&
+      (req.body.equip1 === true &&
+        req.body.equip2 === false &&
+        room.equipements.map(equip => equip.name === "TV"))
+    ) {
+      potentielRooms.push(room);
+      return;
+    }
+    if (room.equipements.length === 2 && req.body.pers <= room.capacity) {
+      potentielRooms.push(room);
+      return;
+    }
+    if (
+      req.body.pers <= room.capacity &&
+      (req.body.equip1 === false && req.body.equip2 === false)
+    ) {
+      potentielRooms.push(room);
+      return;
+    }
+
+    return potentielRooms;
+  });
+
+  // var roomsToCheck;
+  // var possibleReservation = [];
+  // for (var i = 0; i < potentielRooms.length; i++) {
+  //   let possibility = potentielRooms[i];
+  //   if (possibility === reservationsList.pers) {
+  //     console.log("OKKKKKK");
+  //   }
+  // }
+  console.log(potentielRooms, "ROOOOOOOMS potentiel");
+  res.send(JSON.stringify(potentielRooms));
 });
 
 function isABeforeB(a, b) {
@@ -103,12 +148,10 @@ app.post("/reserve", async (req, res) => {
   });
   var send = "Réservation impossible";
   if (insert) {
-    fs.writeFileSync(reservation, JSON.stringify(reservationArr));
     reservationArr.push(req.body);
+    fs.writeFileSync(reservation, JSON.stringify(reservationArr));
     send = "Reservation confirmée";
   }
-  res.send(send);
-  console.log(reservationArr);
 });
 
 app.get("*", (req, res) => {

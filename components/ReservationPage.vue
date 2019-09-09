@@ -31,11 +31,12 @@
                     </div>
                     <div class='choices'>
                         <div>
-                        <input id='retro' name='retro' type="checkbox" value='Retro'><label for='retro'>Retro projecteur</label>
-                        </div>
-                        <div>
                         <input id='tv' name='tv' type="checkbox" value='Télévision'><label for='tv'>Télévision</label>
                         </div>
+                        <div>
+                        <input id='retro' name='retro' type="checkbox" value='Retro'><label for='retro'>Retro projecteur</label>
+                        </div>
+                       
                     </div>
                 </div>
             </div>

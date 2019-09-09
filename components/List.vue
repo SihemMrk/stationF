@@ -75,11 +75,12 @@ const axios = require('axios');
         },
         reserve : async function(name){
             console.log(name)
-            var name = {name : name}
-            const newProps = Object.assign(this.$props, name)
-           
+            var addName = {name : name}
+            const newProps = Object.assign(addName,this.$props)
             console.log(newProps)
             const response = await axios.post('/reserve', newProps)
+            alert(response.data)
+
          
          }
     }

@@ -2422,12 +2422,13 @@ const axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     },
     reserve: async function (name) {
       console.log(name);
-      var name = {
+      var addName = {
         name: name
       };
-      const newProps = Object.assign(this.$props, name);
+      const newProps = Object.assign(addName, this.$props);
       console.log(newProps);
       const response = await axios.post('/reserve', newProps);
+      alert(response.data);
     }
   }
 });
@@ -2478,6 +2479,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../router */ "./router/index.js");
+//
 //
 //
 //
@@ -3607,6 +3609,18 @@ var staticRenderFns = [
           _c("div", [
             _c("input", {
               attrs: {
+                id: "tv",
+                name: "tv",
+                type: "checkbox",
+                value: "Télévision"
+              }
+            }),
+            _c("label", { attrs: { for: "tv" } }, [_vm._v("Télévision")])
+          ]),
+          _vm._v(" "),
+          _c("div", [
+            _c("input", {
+              attrs: {
                 id: "retro",
                 name: "retro",
                 type: "checkbox",
@@ -3616,18 +3630,6 @@ var staticRenderFns = [
             _c("label", { attrs: { for: "retro" } }, [
               _vm._v("Retro projecteur")
             ])
-          ]),
-          _vm._v(" "),
-          _c("div", [
-            _c("input", {
-              attrs: {
-                id: "tv",
-                name: "tv",
-                type: "checkbox",
-                value: "Télévision"
-              }
-            }),
-            _c("label", { attrs: { for: "tv" } }, [_vm._v("Télévision")])
           ])
         ])
       ])
